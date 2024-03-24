@@ -41,30 +41,20 @@ public class ExcelUploadService {
                     // Perform validation based on cell data type
                     switch (currentCell.getCellType()) {
                         case STRING:
-                            // Handle string data type
                             String stringValue = currentCell.getStringCellValue();
-                            // Perform additional validation if needed
                             break;
                         case NUMERIC:
-                            // Handle numeric data type
                             double numericValue = currentCell.getNumericCellValue();
-                            // Perform additional validation if needed
                             break;
                         case BOOLEAN:
-                            // Handle boolean data type
                             boolean booleanValue = currentCell.getBooleanCellValue();
-                            // Perform additional validation if needed
                             break;
                         default:
-                            // Handle other data types if necessary
                             break;
                     }
                 }
             }
 
-            // Save data to database
-
-            // Close the workbook
             workbook.close();
 
         } catch (IOException e) {
