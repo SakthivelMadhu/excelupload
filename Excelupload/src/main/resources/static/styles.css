@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container h2 {
+    text-align: center;
+}
+
+#login-form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+#login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.grid-container {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.grid-container h2 {
+    text-align: center;
+}
+
+#data-grid {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#data-grid th, #data-grid td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#data-grid th {
+    background-color: #f2f2f2;
+}
