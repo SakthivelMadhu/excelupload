@@ -7,23 +7,30 @@ import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-import java.io.ByteArrayInputStream;
+import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import java.io.ByteArrayInputStream;
+
 @RestController
+@RequestMapping("/api")
 public class ExcelUploadController {
 	
 	
 	private final UserService userService;
+	
+	@Autowired
+	private ExcelUploadService excelUploadService;
 
     @Autowired
     public ExcelUploadController(UserService userService) {
@@ -96,5 +103,54 @@ public class ExcelUploadController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Failed to process the uploaded file"));
         }
+    }
+    
+    
+    
+
+    @PostMapping("/upload")
+    public ResponseEntity<?> uploadExcelFile(@RequestParam("file") MultipartFile file) {
+        if (!file.getContentType().equals("application/vnd.ms-excel")) {
+            return ResponseEntity.badRequest().body("Only Excel files are allowed.");
+        }
+
+        try {
+            // Parse Excel file and extract data
+            List<ExcelData> excelDataList = parseExcelFile(file);
+
+            // Save data to database
+            excelUploadService.saveExcelData(excelDataList);
+
+            return ResponseEntity.ok("File uploaded successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to process Excel file.");
+        }
+    }
+
+    private List<ExcelData> parseExcelFile(MultipartFile file) throws IOException {
+        List<ExcelData> excelDataList = new ArrayList<>();
+
+        try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
+            Sheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
+
+            // Skip header row if needed
+            // rowIterator.next();
+
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                Iterator<Cell> cellIterator = row.cellIterator();
+                ExcelData excelData = new ExcelData(null, null);
+
+                // Assuming the structure of Excel file matches the ExcelData object
+                excelData.setField1(cellIterator.next().getStringCellValue());
+                excelData.setField2(cellIterator.next().getStringCellValue());
+                
+
+                excelDataList.add(excelData);
+            }
+        }
+
+        return excelDataList;
     }
 }

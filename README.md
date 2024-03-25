@@ -65,11 +65,14 @@ Excelupload/
 │   │   │               │   └── ExcelUploadController.java
 │   │   │               ├── model/
 │   │   │               │   ├── ErrorResponse.java
+│   │   │               │   ├── ExcelData.java
 │   │   │               │   ├── FileUploadResponse.java
 │   │   │               │   └── User.java
 │   │   │               ├── service/
 │   │   │               │   ├── ExcelUploadService.java
 │   │   │               │   └── UserService.java
+│   │   │               ├── repository/
+│   │   │               │   ├── ExcelDataRepository.java
 │   │   │               └── ExcelUploadApplication.java
 │   │   └── resources/
 │   │       ├── application.properties

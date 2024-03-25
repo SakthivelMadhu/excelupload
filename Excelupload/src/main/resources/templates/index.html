@@ -32,6 +32,24 @@
         </table>
     </div>
 
+
+	<form id="uploadForm" enctype="multipart/form-data">
+	    <input type="file" id="fileInput" name="file" accept=".xlsx, .xls">
+	    <button type="submit">Upload</button>
+	</form>
+	<script>
+	    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+	        var fileInput = document.getElementById('fileInput');
+	        if (!fileInput.files[0] || !fileInput.files[0].name.endsWith('.xlsx') && !fileInput.files[0].name.endsWith('.xls')) {
+	            alert('Please select an Excel file.');
+	            event.preventDefault();
+	        }
+	    });
+	</script>
+		
+	
+	
+	
     <script src="static\script.js"></script>
 </body>
 </html>
