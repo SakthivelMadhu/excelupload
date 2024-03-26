@@ -10,6 +10,22 @@ This is a Spring Boot project for uploading Excel files, processing the data, an
 - User authentication and CRUD operations on data
 - Pagination, sorting, and error handling
 
+
+## Features
+
+### Data Validation
+- File Type Validation: Only Excel files in the .xlsx format are allowed for upload.
+- Field Data Type Validation: Ensure correct data types for each field in the Excel file (e.g., numeric, date).
+- Error Handling: Capture and return errors for invalid data types or other issues during processing.
+
+### UI Features
+- User-friendly Interface: A clean and intuitive UI design for seamless interaction.
+- Login Page: Authenticate users with login ID and password.
+- CRUD Operations: Perform Create, Read, Update, and Delete operations on the data.
+- Sorting: Allow users to sort data by different fields.
+- Pagination: Display data in pages to improve readability and navigation.
+
+
 ## Technologies Used
 
 - Spring Boot
