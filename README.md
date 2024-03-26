@@ -79,8 +79,8 @@ Excelupload/
 │   │       └── static/
 |   |               |__ styles.css
 |   |               |__ scripts.js
-│   │       └── templates/
 │   │               └── index.html
+│   │       └── templates/
 │   └── test/
 │       └── java/
 │           └── com/

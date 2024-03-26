@@ -1,0 +1,23 @@
+<!-- excel-data-list.component.html -->
+<div>
+    <h3>Excel Data List</h3>
+    <!-- Add sorting and pagination controls here -->
+    <table>
+      <thead>
+        <tr>
+          <th>Field 1</th>
+          <th>Field 2</th>
+          <!-- Add more table headers for other fields -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through Excel data and display rows -->
+        <tr *ngFor="let data of excelData">
+          <td>{{ data.field1 }}</td>
+          <td>{{ data.field2 }}</td>
+          <!-- Add more table cells for other fields -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
